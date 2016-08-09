@@ -58,7 +58,7 @@
     </form:form>
 
     <br/>
-    <a href='<spring:url value="/owners/new" htmlEscape="true"/>'>Add Owner</a>
+    <a href='#'>Add Owner</a>
 
     <jsp:include page="../fragments/footer.jsp"/>
 
