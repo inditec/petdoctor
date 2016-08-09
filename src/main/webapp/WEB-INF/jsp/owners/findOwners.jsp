@@ -17,13 +17,13 @@
             //alert("Please enter Last name");
             return false;
         }
-        if (lastName.length > 30 || lastName.length < 3) {
+        if (lastName.length > 31 || lastName.length < 3) {
             document.getElementById('error_messages').innerHTML = "Last Name must be between 3 and 30 chars";
             //alert("Last Name must be less than or equal to 30 chars");
             return false;
         }
 
-        var regex = /^[a-zA-Z\s]*$/;
+        var regex = /^[a-zA-Z0-9\s]*$/;
         if (!regex.test(lastName)) {
             document.getElementById('error_messages').innerHTML = "Last Name must contain only alphabets or spaces";
             return false;
@@ -47,12 +47,13 @@
         <fieldset>
             <div class="control-group" id="lastName">
                 <label class="control-label">Last name </label>
-                <form:input path="lastName" size="30" maxlength="80"/>
+                <form:input path="lastName" size="10" maxlength="80"/>
                 <span class="help-inline" id="error_messages" style="color:red;"><form:errors path="*"/></span>
             </div>
             <br>
             <div class="form-actions">
-                <button type="submit" onclick="return validateForm()">Find Owner</button>
+                <br><br><br><br>
+                <button type="submit" onclick="return validateForm()">find owner</button>
             </div>
         </fieldset>
     </form:form>
