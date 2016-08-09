@@ -8,14 +8,13 @@
 <div class="navbar navbar-default" style="width: 100%;">
      <ul class="nav nav-pills">
          <li style="width: 100px;"><a href="<spring:url value="/" htmlEscape="true" />">
-         	<span class="glyphicon glyphicon-home"></span>
+
              Home</a>
          </li>
-         <li style="width: 130px;"><a href="#"><i
-                 class="glyphicon glyphicon-search"></i> Find owners</a></li>
+         <li style="width: 130px;">&nbsp;</li>
          <li style="width: 140px;">
          	<a href="#">
-         	<span class="glyphicon glyphicon-th-list"></span> Veterinarians</a>
+         	<span class="glyphicon glyphicon-th-list"></span> Veterinerians</a>
          </li>
 		 <li style="width: 90px;">
          	&nbsp;
