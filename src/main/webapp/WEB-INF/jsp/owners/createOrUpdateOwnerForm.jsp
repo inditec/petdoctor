@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -12,6 +12,56 @@
 
 <jsp:include page="../fragments/headTag.jsp"/>
 
+
+<script language="JavaScript">
+    function validateField(fieldName, fieldValue, minLength, maxLength, errorMessageId, regex, regexDesc) {
+        if (fieldValue == null || fieldValue.trim() == "") {
+            document.getElementById('error_messages').innerHTML = "Please enter " + fieldName;
+            return false;
+        }
+        if (fieldValue.length > maxLength || fieldValue.length < minLength) {
+            document.getElementById('error_messages').innerHTML = fieldName + " must be between "+minLength+" and "+maxLength+" chars";
+            return false;
+        }
+        if(regex != undefined) {
+            if (!regex.test(fieldValue)) {
+                document.getElementById('error_messages').innerHTML = fieldName + " must contain only "+regexDesc;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function validateForm() {
+        var myform = document.forms[0];
+        var firstName = myform.firstName.value;
+        var lastName = myform.lastName.value;
+        var address = myform.address.value;
+        var city = myform.city.value;
+        var telephone = myform.telephone.value;
+        var nameRegex = /^[a-zA-Z\s]*$/;
+        var nameRegexDesc = "alphabets or spaces";
+        var phoneRegex = /^[0-9\s]*$/;
+        var phoneRegexDesc = "numbers or spaces";
+        var errorMessagesId = "error_messages";
+        //
+        var valid = validateField("First Name", firstName, 5, 30, errorMessagesId, nameRegex, nameRegexDesc);
+        if(valid){
+            valid = validateField("Last Name", lastName, 5, 30, errorMessagesId, nameRegex, nameRegexDesc);
+        }
+        if(valid){
+            valid = validateField("Address", address, 30, 255, errorMessagesId);
+        }
+        if(valid){
+            valid = validateField("City", city, 2, 80, errorMessagesId, nameRegex, nameRegexDesc);
+        }
+        if(valid){
+            valid = validateField("Telephone", telephone, 5, 12, errorMessagesId, phoneRegex, phoneRegexDesc);
+        }
+        return valid;
+    }
+</script>
+
 <body>
 <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
@@ -23,6 +73,7 @@
     <h2>
         <c:if test="${owner['new']}">New </c:if> Owner
     </h2>
+    <span id="error_messages" style="color:red;">&nbsp;</span>
     <form:form modelAttribute="owner" method="${method}" class="form-horizontal" id="add-owner-form" onsubmit="return validateForm();">
         <petclinic:inputField label="First Name" name="firstName"/>
         <petclinic:inputField label="Last Name" name="lastName"/>
@@ -45,20 +96,5 @@
 <jsp:include page="../fragments/footer.jsp"/>
 </body>
 
-<script language="JavaScript">
-
-function validateForm() {
-    var x = document.add-owner-form.firstName.value;
-    if (x == null || x == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-    
-    if (x.length > 30) {
-        alert("Name must be less than 30 chars");
-        return false;
-    }
-}
-</script>
 
 </html>
