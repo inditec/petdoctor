@@ -43,7 +43,7 @@
             	<spring:url value="{ownerId}/pets/new.html" var="addUrl">
                     <spring:param name="ownerId" value="${owner.id}"/>
                 </spring:url>
-                <a href="${fn:escapeXml(addUrl)}"  class="btn btn-success">Add New Pet</a></td>
+                <a href="#">Add New Pet</a></td>
         </tr>
     </table>
 
