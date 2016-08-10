@@ -49,12 +49,13 @@
         var phoneRegexDesc = "numbers or spaces";
         var errorMessagesId = "error_messages";
         //
-        var valid = validateField("First Name", firstName, 5, 30, errorMessagesId, nameRegex, nameRegexDesc);
+        var firstNameRegex = /^[0-9a-zA-Z\s]*$/;
+        var valid = validateField("First Name", firstName, 5, 30, errorMessagesId, firstNameRegex, nameRegexDesc);
         if(valid){
-            valid = validateField("Last Name", lastName, 5, 30, errorMessagesId, nameRegex, nameRegexDesc);
+            valid = validateField("Last Name", lastName, 5, 31, errorMessagesId, nameRegex, nameRegexDesc);
         }
         if(valid){
-            valid = validateField("Address", address, 30, 255, errorMessagesId);
+            valid = validateField("Address", address, 30, 256, errorMessagesId);
         }
         if(valid){
             valid = validateField("City", city, 2, 80, errorMessagesId, nameRegex, nameRegexDesc);
