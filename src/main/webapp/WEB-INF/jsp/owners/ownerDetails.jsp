@@ -82,14 +82,14 @@
 			                        <spring:param name="ownerId" value="${owner.id}"/>
 			                        <spring:param name="petId" value="${pet.id}"/>
 			                    </spring:url>
-			                    <a href="${fn:escapeXml(petUrl)}">Edit Pet</a>
+			                    <a href="#">Edit Pet</a>
 			                </td>
                             <td>
 			                    <spring:url value="/owners/{ownerId}/pets/{petId}/visits/new" var="visitUrl">
 			                        <spring:param name="ownerId" value="${owner.id}"/>
 			                        <spring:param name="petId" value="${pet.id}"/>
 			                    </spring:url>
-			                    <a href="${fn:escapeXml(visitUrl)}">Add Visit</a>
+			                    <a href="#">Add Visit</a>
                             </td>
                        	</tr>
                     </table>
