@@ -9,6 +9,66 @@
 <html lang="en">
 
 <jsp:include page="../fragments/headTag.jsp"/>
+
+<script src="/petdoctor/resources/js/moment.js"></script>
+
+
+
+<script language="JavaScript">
+    function validateField(fieldName, fieldValue, minLength, maxLength, errorMessageId, regex, regexDesc) {
+        if (fieldValue == null || fieldValue.trim() == "") {
+            document.getElementById('error_messages').innerHTML = "Please enter " + fieldName;
+            return false;
+        }
+        if (fieldValue.length > maxLength || fieldValue.length < minLength) {
+            document.getElementById('error_messages').innerHTML = fieldName + " must be between "+minLength+" and "+maxLength+" chars";
+            return false;
+        }
+        if(regex != undefined) {
+            if (!regex.test(fieldValue)) {
+                document.getElementById('error_messages').innerHTML = fieldName + " must contain only "+regexDesc;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function validateForm() {
+        var myform = document.forms[0];
+        var name = myform.name.value;
+        var birthDate = myform.birthDate.value;
+        var type = myform.type.value;
+        var nameRegex = /^[a-zA-Z\s]*$/;
+        var nameRegexDesc = "alphabets or spaces";
+        var errorMessagesId = "error_messages";
+        //
+        var valid = validateField("Name", name, 5, 30, errorMessagesId, nameRegex, nameRegexDesc);
+        if(valid){
+            valid = moment(birthDate, 'YYYY/MM/DD',true).isValid();
+            if(!valid){
+                document.getElementById('error_messages').innerHTML = "Please enter a valid Birth Date in YYYY/MM/DD format";
+            }
+
+            if(valid){
+                var today = new Date();
+                var bDate = moment(birthDate, "YYYY/MM/DD");
+                if(bDate > today){
+                    document.getElementById('error_messages').innerHTML = "Birth Date cannot be future";
+                    valid = false;
+                }
+            }
+        }
+        if(valid){
+            if(type == '' || type == undefined ){
+                document.getElementById('error_messages').innerHTML = "Please select Type";
+                valid = false;
+            }
+        }
+        return valid;
+    }
+</script>
+
+
 <body>
 
 <script>
@@ -32,8 +92,10 @@
         Pet
     </h2>
 
+    <span id="error_messages" style="color:red;">&nbsp;</span>
+
     <form:form modelAttribute="pet" method="${method}"
-               class="form-horizontal">
+               class="form-horizontal" onsubmit="return validateForm()">
         <div class="control-group" id="owner">
             <label class="control-label">Owner </label>
 

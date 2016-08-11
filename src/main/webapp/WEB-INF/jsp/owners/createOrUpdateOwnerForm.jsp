@@ -20,7 +20,11 @@
             return false;
         }
         if (fieldValue.length > maxLength || fieldValue.length < minLength) {
-            document.getElementById('error_messages').innerHTML = fieldName + " must be between "+minLength+" and "+maxLength+" chars";
+            if(minLength == maxLength){
+                document.getElementById('error_messages').innerHTML = fieldName + " must be " + maxLength + " chars";
+            }else {
+                document.getElementById('error_messages').innerHTML = fieldName + " must be between " + minLength + " and " + maxLength + " chars";
+            }
             return false;
         }
         if(regex != undefined) {
@@ -56,7 +60,7 @@
             valid = validateField("City", city, 2, 80, errorMessagesId, nameRegex, nameRegexDesc);
         }
         if(valid){
-            valid = validateField("Telephone", telephone, 5, 12, errorMessagesId, phoneRegex, phoneRegexDesc);
+            valid = validateField("Telephone", telephone, 11, 11, errorMessagesId, phoneRegex, phoneRegexDesc);
         }
         return valid;
     }
