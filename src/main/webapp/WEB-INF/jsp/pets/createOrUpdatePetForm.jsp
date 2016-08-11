@@ -38,7 +38,7 @@
         var name = myform.name.value;
         var birthDate = myform.birthDate.value;
         var type = myform.type.value;
-        var nameRegex = /^[a-zA-Z\s]*$/;
+        var nameRegex = /^[0-9a-zA-Z\s]*$/;
         var nameRegexDesc = "alphabets or spaces";
         var errorMessagesId = "error_messages";
         //
@@ -49,14 +49,14 @@
                 document.getElementById('error_messages').innerHTML = "Please enter a valid Birth Date in YYYY/MM/DD format";
             }
 
-            if(valid){
-                var today = new Date();
-                var bDate = moment(birthDate, "YYYY/MM/DD");
-                if(bDate > today){
-                    document.getElementById('error_messages').innerHTML = "Birth Date cannot be future";
-                    valid = false;
-                }
-            }
+//            if(valid){
+//                var today = new Date();
+//                var bDate = moment(birthDate, "YYYY/MM/DD");
+//                if(bDate > today){
+//                    document.getElementById('error_messages').innerHTML = "Birth Date cannot be future";
+//                    valid = false;
+//                }
+//            }
         }
         if(valid){
             if(type == '' || type == undefined ){
