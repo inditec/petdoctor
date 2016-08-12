@@ -17,6 +17,31 @@
         $("#date").datepicker({ dateFormat: 'yy/mm/dd'});
     });
 </script>
+
+<script src="/petdoctor/resources/js/moment.js"></script>
+
+<script language="JavaScript">
+    function validateForm() {
+        var myform = document.forms[0];
+        var date = myform.date.value;
+        var description = myform.description.value;
+        var errorMessagesId = "error_messages";
+        //
+        var valid = moment(date, 'YYYY/MM/DD',true).isValid();
+        if(!valid){
+            document.getElementById(errorMessagesId).innerHTML = "Please enter a valid Date in YYYY/MM/DD format";
+        }
+
+        if(valid) {
+            if (description.length > 255 || description.length < 5) {
+                document.getElementById(errorMessagesId).innerHTML = "Description must be between 5 and 255 chars";
+                valid = false;
+            }
+        }
+        return valid;
+    }
+</script>
+
 <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
     <h2><c:if test="${visit['new']}">New </c:if>Visit</h2>
@@ -39,7 +64,9 @@
         </tr>
     </table>
 
-    <form:form modelAttribute="visit">
+    <span id="error_messages" style="color:red;">&nbsp;</span>
+
+    <form:form modelAttribute="visit" onsubmit="return validateForm()">
         <div class="control-group">
             <label class="control-label">Date </label>
 
