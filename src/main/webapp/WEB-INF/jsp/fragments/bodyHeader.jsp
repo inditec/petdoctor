@@ -14,7 +14,7 @@
          <li style="width: 130px;"><a href="<spring:url value="/owners/find.html" htmlEscape="true" />"><i
                  class="glyphicon glyphicon-search"></i> Find owners</a></li>
          <li style="width: 140px;">
-         	<a href="<spring:url value="/vets.html" htmlEscape="true" />">
+         	<a href="#">
          	<span class="glyphicon glyphicon-th-list"></span> Veterinarians</a>
          </li>
 		 <li style="width: 90px;">
