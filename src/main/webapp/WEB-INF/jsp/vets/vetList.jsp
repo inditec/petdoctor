@@ -17,10 +17,10 @@
     <h2>Veterinarians</h2>
 
     <datatables:table id="vets" data="${vets.vetList}" cdn="true" row="vet" theme="bootstrap2" cssClass="table table-striped" paginate="false" info="false">
-        <datatables:column title="Name">
+        <datatables:column title="name">
             <c:out value="${vet.firstName} ${vet.lastName}"></c:out>
         </datatables:column>
-        <datatables:column title="Specialties">
+        <datatables:column title="Specialities">
             <c:forEach var="specialty" items="${vet.specialties}">
                 <c:out value="${specialty.name}"/>
             </c:forEach>
