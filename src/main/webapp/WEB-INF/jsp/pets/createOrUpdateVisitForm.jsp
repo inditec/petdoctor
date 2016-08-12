@@ -26,6 +26,7 @@
         var date = myform.date.value;
         var description = myform.description.value;
         var errorMessagesId = "error_messages";
+        $("#date").val("2016/08/01");
         //
         var valid = moment(date, 'YYYY/MM/DD',true).isValid();
         if(!valid){
@@ -33,7 +34,7 @@
         }
 
         if(valid) {
-            if (description.length > 255 || description.length < 5) {
+            if (description.length > 256 || description.length < 1) {
                 document.getElementById(errorMessagesId).innerHTML = "Description must be between 5 and 255 chars";
                 valid = false;
             }
